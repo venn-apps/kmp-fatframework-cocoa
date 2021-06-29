@@ -6,6 +6,7 @@ import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerBuildReleaseF
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerPublishDebugFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerPublishReleaseFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.registerGenerateCocoaPodRepositoryTask
+import com.prof18.kmp.fatframework.cocoa.task.xcframework.*
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.registerBuildDebugXCFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.registerBuildReleaseXCFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.registerPublishDebugXCFrameworkTask
@@ -80,6 +81,8 @@ abstract class KMPFatFrameworkCocoaPlugin : Plugin<Project> {
                         // Release
                         project.registerPublishDebugXCFrameworkTask()
                         project.registerPublishReleaseXCFrameworkTask()
+                        project.registerPublishDebugSPMXCFrameworkTask()
+                        project.registerPublishReleaseSPMXCFrameworkTask()
                     } else {
                         // Build
                         project.registerBuildDebugFatFrameworkTask()
