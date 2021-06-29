@@ -1,11 +1,13 @@
 package com.prof18.kmp.fatframework.cocoa
 
 import com.prof18.kmp.fatframework.cocoa.task.common.registerPublishPreparationTasks
+import com.prof18.kmp.fatframework.cocoa.task.commonspm.registerPublishSPMPreparationTasks
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerBuildDebugFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerBuildReleaseFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerPublishDebugFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.fatframework.registerPublishReleaseFatFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.registerGenerateCocoaPodRepositoryTask
+import com.prof18.kmp.fatframework.cocoa.task.registerGenerateSPMRepositoryTask
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.*
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.registerBuildDebugXCFrameworkTask
 import com.prof18.kmp.fatframework.cocoa.task.xcframework.registerBuildReleaseXCFrameworkTask
@@ -71,8 +73,10 @@ abstract class KMPFatFrameworkCocoaPlugin : Plugin<Project> {
                     // Register Tasks
                     // Cocoa Pod Repo
                     project.registerGenerateCocoaPodRepositoryTask()
+                    project.registerGenerateSPMRepositoryTask()
 
                     project.registerPublishPreparationTasks()
+                    project.registerPublishSPMPreparationTasks()
                     if (extension.useXCFramework) {
                         // Build
                         project.registerBuildDebugXCFrameworkTask()

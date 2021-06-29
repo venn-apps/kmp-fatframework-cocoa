@@ -41,11 +41,11 @@ internal fun Project.registerGenerateSPMRepositoryTask() {
                 "authors" to conf.cocoaPodRepoInfo.authors,
                 "gitUrl" to conf.cocoaPodRepoInfo.gitUrl,
                 "frameworkName" to frameworkName,
-                "frameworkPath" to "${conf.outputPath}/${conf.frameworkName}.${if(conf.useXCFramework) "xcframework" else "framework"}"
+                "frameworkPath" to "${conf.frameworkName}.${if(conf.useXCFramework) "xcframework" else "framework"}"
             )
 
             SimpleTemplateEngine()
-                .createTemplate(CocoaPodRepoInfo.templateFile)
+                .createTemplate(CocoaPodRepoInfo.SPMTemplateFile)
                 .make(templateMap)
                 .writeTo(podspecFile.writer())
 

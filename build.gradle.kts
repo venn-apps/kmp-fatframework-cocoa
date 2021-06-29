@@ -1,4 +1,5 @@
 import java.util.*
+import java.io.*
 
 buildscript {
     repositories {
@@ -18,7 +19,7 @@ plugins {
     signing
 }
 
-val versionName = "0.2.1"
+val versionName = "0.3.0"
 val group = "com.prof18.kmp.fatframework.cocoa"
 
 version = versionName
@@ -97,7 +98,7 @@ publishing {
 
                 name.set("KMP FatFramework Cocoa")
                 description.set("Gradle plugin to distribute a Kotlin Multiplatform iOS library in a FatFramework with CocoaPod")
-                url.set("https://github.com/prof18/kmp-fatframework-cocoa")
+                url.set("https://github.com/venn-apps/kmp-fatframework-cocoa")
 
                 licenses {
                     license {
@@ -110,11 +111,15 @@ publishing {
                         id.set("prof18")
                         name.set("Marco Gomiero")
                     }
+                    developer {
+                        id.set("amrfarid140")
+                        name.set("Amr Yousef")
+                    }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/prof18/kmp-fatframework-cocoa")
-                    developerConnection.set("scm:git:ssh://git@github.com/prof18/kmp-fatframework-cocoa.git")
-                    url.set("https://github.com/prof18/kmp-fatframework-cocoa")
+                    connection.set("scm:git:https://github.com/venn-apps/kmp-fatframework-cocoa")
+                    developerConnection.set("scm:git:ssh://git@github.com/venn-apps/kmp-fatframework-cocoa.git")
+                    url.set("https://github.com/venn-apps/kmp-fatframework-cocoa")
                 }
             }
         }
@@ -122,18 +127,26 @@ publishing {
 
     repositories {
         maven {
-            val releasesUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            val snapshotsUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-            name = "sonatype"
-            url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsUrl else releasesUrl)
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/venn-apps/VennModels-KMP")
             credentials {
-                username = local.getProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
-                password = local.getProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
+                username = gradleLocalProperties(rootDir).getProperty("gpr.user")
+                    ?: System.getenv("GITHUB_USERNAME")
+                password = gradleLocalProperties(rootDir).getProperty("gpr.key")
+                    ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
 }
 
-signing {
-    sign(publishing.publications["pluginMaven"])
+fun gradleLocalProperties(projectRootDir : File) : Properties {
+    val properties = Properties()
+    val localProperties = File(projectRootDir, "local.properties")
+
+    if (localProperties.isFile) {
+        InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
+            properties.load(reader)
+        }
+    }
+    return properties
 }
