@@ -128,7 +128,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/venn-apps/VennModels-KMP")
+            url = uri("https://maven.pkg.github.com/venn-apps/kmp-fatframework-cocoa")
             credentials {
                 username = gradleLocalProperties(rootDir).getProperty("gpr.user")
                     ?: System.getenv("GITHUB_USERNAME")
