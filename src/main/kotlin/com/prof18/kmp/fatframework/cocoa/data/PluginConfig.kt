@@ -23,6 +23,7 @@ internal class PluginConfig private constructor(
 ) {
 
     internal fun getPodSpecFile() = File("${outputPath}/${frameworkName}.podspec")
+    internal fun getSPMPackageFile() = File("${outputPath}/Package.swift")
 
     internal companion object {
         fun of(extension: KMPFatFrameworkCocoaExtension): PluginConfig {

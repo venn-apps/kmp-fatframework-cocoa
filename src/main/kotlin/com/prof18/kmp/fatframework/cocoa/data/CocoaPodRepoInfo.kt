@@ -12,5 +12,7 @@ internal data class CocoaPodRepoInfo(
     internal companion object {
         internal val templateFile =
             KMPFatFrameworkCocoaPlugin::class.java.getResource("/template/Framework.podspec.template")
+        internal val SPMTemplateFile =
+            KMPFatFrameworkCocoaPlugin::class.java.getResource("/template/Package.swift.template")
     }
 }
