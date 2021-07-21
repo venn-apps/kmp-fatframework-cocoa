@@ -20,7 +20,7 @@ plugins {
 }
 
 val versionName = "0.3.0"
-val group = "vennapps"
+val group = "com.prof18.kmp.fatframework.cocoa"
 
 version = versionName
 
