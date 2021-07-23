@@ -6,6 +6,7 @@ import com.prof18.kmp.fatframework.cocoa.utils.executeBashCommand
 import com.prof18.kmp.fatframework.cocoa.utils.retrieveMainBranchName
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Project
+import org.gradle.api.logging.LogLevel
 import org.gradle.process.internal.ExecException
 
 internal const val PREPARE_SPM_REPO_FOR_DEBUG_TASK_NAME = "prepareIosSPMRepoForDebug"
@@ -56,8 +57,10 @@ internal fun Project.registerPublishSPMPreparationTasks() {
             }
 
             // Check if master or main
-            val branchName = retrieveMainBranchName(config.outputPath)
-
+            val branchName = config.releaseBranchName.ifEmpty {
+                retrieveMainBranchName(config.outputPath)
+            }
+            project.logger.log(LogLevel.WARN, "AMR-branch-${branchName}")
             // Checkout on selected branch
             execBashCommandInRepoAndThrowExecException(
                 commandList = listOf("git", "checkout", branchName),

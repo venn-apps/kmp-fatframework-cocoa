@@ -19,7 +19,8 @@ internal class PluginConfig private constructor(
     val outputPath: String,
     val versionName: String,
     val cocoaPodRepoInfo: CocoaPodRepoInfo,
-    val useXCFramework: Boolean
+    val useXCFramework: Boolean,
+    val releaseBranchName: String
 ) {
 
     internal fun getPodSpecFile() = File("${outputPath}/${frameworkName}.podspec")
@@ -52,7 +53,8 @@ internal class PluginConfig private constructor(
                 outputPath = outputPath,
                 versionName = versionName,
                 cocoaPodRepoInfo = extension.cocoaPodRepoInfo,
-                useXCFramework = extension.useXCFramework
+                useXCFramework = extension.useXCFramework,
+                releaseBranchName = extension.releaseBranchName ?: ""
             )
         }
     }

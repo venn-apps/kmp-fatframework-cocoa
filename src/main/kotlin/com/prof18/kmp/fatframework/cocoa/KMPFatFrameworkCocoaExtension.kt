@@ -16,6 +16,7 @@ abstract class KMPFatFrameworkCocoaExtension @Inject constructor(project: Projec
     var outputPath: String? = null
     var versionName: String? = null
     var useXCFramework: Boolean = false
+    var releaseBranchName: String? = null
 
     // Internal variables
     internal val debugFrameworkList: MutableList<Framework> = mutableListOf()
@@ -30,7 +31,8 @@ abstract class KMPFatFrameworkCocoaExtension @Inject constructor(project: Projec
                 homepage = dsl.homepage,
                 license = dsl.license,
                 authors = dsl.authors,
-                gitUrl = dsl.gitUrl
+                gitUrl = dsl.gitUrl,
+                releaseBranchName = dsl.releaseBranchName
             )
 
         }

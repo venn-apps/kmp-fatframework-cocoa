@@ -2,6 +2,7 @@ package com.prof18.kmp.fatframework.cocoa.utils
 
 import com.prof18.kmp.fatframework.cocoa.data.getConfigurationOrThrow
 import org.gradle.api.Project
+import org.gradle.api.logging.LogLevel
 import org.gradle.process.internal.ExecException
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -43,6 +44,7 @@ internal fun Project.executeBashCommand(showOutput: Boolean = true, workingDirFi
 
 internal fun Project.execBashCommandInRepoAndThrowExecException(commandList: List<String>, exceptionMessage: String) {
     val config = getConfigurationOrThrow()
+    logger.log(LogLevel.WARN, "AMR-${config.outputPath}")
     try {
         executeBashCommand(
             workingDirPath = config.outputPath,

@@ -7,7 +7,8 @@ internal data class CocoaPodRepoInfo(
     var homepage: String = "",
     var license: String = "",
     var authors: String = "",
-    var gitUrl: String = ""
+    var gitUrl: String = "",
+    var releaseBranchName: String = ""
 ) {
     internal companion object {
         internal val templateFile =
