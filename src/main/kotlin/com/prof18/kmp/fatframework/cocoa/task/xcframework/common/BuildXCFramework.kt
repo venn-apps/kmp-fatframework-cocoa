@@ -24,7 +24,7 @@ internal fun Exec.buildXCFramework(config: PluginConfig, frameworks: List<Framew
         )
         project.executeBashCommand(
             showOutput = true,
-            workingDirPath = config.outputPath,
+            workingDirFile = xcFrameworkDest.parentFile,
             commandList = listOf("rm", "-rf", "${config.frameworkName}.xcframework")
         )
     } catch (error: Exception) {

@@ -44,7 +44,6 @@ internal fun Project.executeBashCommand(showOutput: Boolean = true, workingDirFi
 
 internal fun Project.execBashCommandInRepoAndThrowExecException(commandList: List<String>, exceptionMessage: String) {
     val config = getConfigurationOrThrow()
-    logger.log(LogLevel.WARN, "AMR-${config.outputPath}")
     try {
         executeBashCommand(
             workingDirPath = config.outputPath,

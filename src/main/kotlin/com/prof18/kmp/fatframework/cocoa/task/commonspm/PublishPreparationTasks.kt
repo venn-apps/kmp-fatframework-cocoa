@@ -60,7 +60,6 @@ internal fun Project.registerPublishSPMPreparationTasks() {
             val branchName = config.releaseBranchName.ifEmpty {
                 retrieveMainBranchName(config.outputPath)
             }
-            project.logger.log(LogLevel.WARN, "AMR-branch-${branchName}")
             // Checkout on selected branch
             execBashCommandInRepoAndThrowExecException(
                 commandList = listOf("git", "checkout", branchName),
